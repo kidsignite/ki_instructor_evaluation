@@ -195,11 +195,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ionicSe
        }
       }
     })
-    .state('tabs.studentdetails', {
-      url: "/studentdetails",
+    .state('tabs.instructordetails', {
+      url: "/instructordetails",
       views: {
         'home-tab': {
-          templateUrl: "templates/studentdetails.html"
+          templateUrl: "templates/instructordetails.html"
         }
       }
     })
@@ -294,18 +294,20 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ionicSe
 
 .service('apiService', function() {
   var apiService = this;
-  apiService.sharedObject = {};
+
+  apiService.instructorsObject = {};
 
   apiService.questionsObject = {};
 
-  apiService.getStudentInfo = function(){
-     return apiService.sharedObject;
+
+  apiService.getInstructorInfo = function(){
+     return apiService.instructorsObject;
   }
 
-  apiService.setStudentInfo = function(value){
-    apiService.sharedObject = {};
+  apiService.setInstructorInfo = function(value){
+    apiService.instructorsObject = {};
 
-    apiService.sharedObject = value;
+    apiService.instructorsObject = value;
   }
 
   apiService.getQuestionsInfo = function(){
@@ -331,7 +333,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ionicSe
     $scope.questionIndex=0;
     $scope.questionList = apiService.getQuestionsInfo();
 
-    $scope.student = apiService.getStudentInfo();
+    $scope.instructor = apiService.getInstructorInfo();
 
     console.log($scope.questionList);
     console.log($scope.questionList[$scope.questionIndex].question);
@@ -360,7 +362,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ionicSe
         "question_id" : $scope.questionList[x].question_id,
         "question" : $scope.questionList[x].question,
         "rating" : 0,
-        "student_reg_no" : $scope.student.Registration_No,
+        "student_reg_no" : $scope.instructor.instructor_id,
         "date" : today,
         "week" : 1
       };
@@ -437,8 +439,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ionicSe
                method: 'POST',
                contentType:'application/json',
 
-               /*url: 'https://script.google.com/macros/s/AKfycbwHaGlRE6Lk_S2BnnQ6ed4oBloTOOeKJHBJLPaEcdEhQncCga_G/exec?results=' +resultArr,*/
-               url: 'https://script.google.com/macros/s/AKfycbwHaGlRE6Lk_S2BnnQ6ed4oBloTOOeKJHBJLPaEcdEhQncCga_G/exec',
+               url: 'https://script.google.com/macros/s/AKfycbxNrcIqOuP-7fLMELx2Gw50A65g10KtbNTQSPNdPE12JdUrsCE/exec',
                headers: {'Content-Type': undefined},
                data: resultArr
               };
@@ -465,152 +466,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ionicSe
 
       }
 
-
- 
- //   $scope.check = function() {
-//   rating  = $scope.rate.value;
-  
-
-   
-//               if(rate.length == 0){
-//               if(rate[count]== undefined ){
- 
-       
-//         id = arr[count].question_id;
-//         rate.push({question_id:id,question:arr[count],rating:rating,date:date,student_reg_no:student,week : Week});
-//         $scope.rate.value = 0;
-//         count = count +1 ;
-       
-        
-//         $scope.result = arr[count];
-
-              
-
- //               } else{ 
-                 
-//          rate[count].rate = rating ;
- 
-        
-//          count = count +1 ;
-//          id = arr[count].question_id;
-         
-//                     $scope.result = arr[count];
-       
- 
-// }  
-      
-//     }
-//               else{
-//                  if(rate[count]== undefined ){
-//                 id = arr[count].question_id;
-//                 rate.push({question_id:id,question:arr[count],rating:rating,date:date,student_reg_no:student,week:Week});
-//                 $scope.rate.value = 0;
- 
-                 
-//                 count = count +1 ;
-               
-                
-//                if(count>arr.length-1){
-//                 console.log("done");
-
- //                 //post request 
-
-
-
-// var request = {
-//    method: 'POST',
-//    contentType:'application/json',
-//    url: 'https://script.google.com/macros/s/AKfycbwHaGlRE6Lk_S2BnnQ6ed4oBloTOOeKJHBJLPaEcdEhQncCga_G/exec?results=' +rate,
-//    headers: {'Content-Type': undefined},
-//    //data: { test: 'test' }
-// };
-
-// $http(request).then(function(response) {
-//   console.log(response);
-// }, function(error) {
-//   alert("error");
-// });
- 
-
-
-               
-
-//               } else{
-//               $scope.result = arr[count];
-//               }
-
-
-//                  }
-
- //                  else{
-//                    rate[count].rate = rating ;
-//                    console.log("ok r" +rate[count]);
-//                    count = count +1 ;
-                   
-//                     $scope.result = arr[count];
-//                  }
-            
-               
-              
-//               }
-              
-            
-
- 
-
-//   console.log(rate);     
-
-  
-        
-      
-
-//   };
-
- //   $scope.back = function() {
-
-//               if(rate.length == 0){
-//         $scope.result = arr[count];
-//                   }
-//               else{
-//                if(count<0){
-//                 console.log("low");
-               
-
-
-//               } else{
-//                  count = count -1 ;
-//                  $scope.rate.value = 0;
-//               if(count == -1 ){
-//                   alert("There is no");
-//               }else{
-
-// console.log(rate[count]);
-// $scope.rate.value = rate[count].rating;
-// console.log("rate  set = "+rate[count].rating);
-                
-//               }
-             
-//               $scope.result = arr[count];
-//               }
-               
-              
-//               }
-              
-//  // console.log(rate);
-//    console.log(count);     
- 
-      
-
-//   };
-  
-  
  
 })
 
 .controller('BarcodeCtrl', function($scope, $cordovaBarcodeScanner, $http, $state, $ionicLoading, apiService) {
-
-    $scope.APIresponse = apiService.getStudentInfo();
-
 
        $ionicLoading.show({
       content: 'Loading',
@@ -635,15 +494,14 @@ $scope.ins = function() {
     } 
 
   };
-if(!arr){
-            $http.get("https://script.google.com/macros/s/AKfycbwCBI06okNRN5Ms22i5Aj6Ej_gBi1NimtPKQ4M31y2eq8qyYEU/exec", {})
+            $http.get("https://script.google.com/macros/s/AKfycbzcBMfKT-35WS9Goth30wdgnRaSaldyEGQSjehOtK1xNaPLtQo/exec", {})
     .success(function (response) {
                 if (response.hasError) {
                   console.log("Error")
                 } else {
                   apiService.setQuestionsInfo(response.data);
                    $ionicLoading.hide();
-                  console.log("Success")
+                  console.log("Success1")
                   console.log(response.data)
                  arr = response.data;
                status = 0 ;
@@ -657,7 +515,7 @@ if(!arr){
               console.log(response)
                
             });
-       }             
+                   
   
   
 
@@ -666,35 +524,29 @@ if(!arr){
 
 })
 
-.controller('StudentDetailsCtrl', function($scope, $cordovaBarcodeScanner, $http, $state, $ionicLoading, apiService) {
+.controller('InstructorDetailsController', function($scope, $cordovaBarcodeScanner, $http, $state, $ionicLoading, apiService) {
 
-    $scope.APIresponse = apiService.getStudentInfo();
+    $scope.APIresponse = apiService.getInstructorInfo();
     console.log($scope.APIresponse);
 
 
 })
 
-.controller('studentCheckCtrl', function($scope, $http,$state, $cordovaBarcodeScanner, $ionicLoading, apiService) {
+.controller('instructorSelectCtrl', function($scope, $http,$state, $cordovaBarcodeScanner, $ionicLoading, apiService) {
+
+
 
 $scope.show = false;
-  // verifyQRCode("y8y89y9");
- 
-  
-  $scope.barcodeVal = "N1548034";
 
-  verifyQRCode($scope.barcodeVal);
 
- 
-  document.addEventListener("deviceready", function () {
-    openBarcodeScanner();
-  }, false);
+    loadInstructors();
+
 
  $scope.test = function(modVal){
           console.log(modVal);
         }
 
-  $scope.loadStudentInformation = function(){
-    // alert("load Student info");
+ function loadInstructors(){
 
     $ionicLoading.show({
       content: 'Loading',
@@ -704,122 +556,30 @@ $scope.show = false;
       showDelay: 0
     });
 
-    $http.get("https://script.google.com/macros/s/AKfycbwym9Io9DP7VJHlcypXa8bJ-5DhfXr-DzrvMszDkVr548a_bqkW/exec")
+    $http.get("https://script.google.com/macros/s/AKfycbyHTiEoJVonZf9OByPWe1WdOKGqXYs6jRjqxvAMTZtJtdUyy7E/exec")
     .then(function(response) {
-        $scope.status = "false";
         $ionicLoading.hide();
 
-        $scope.students = response.data;
-        console.log($scope.students);
-
+        
         var data  = response.data.data;
-        $scope.studentsdata = data;
+        $scope.instructordata = data;
 
-        console.log($scope.studentsdata);
+        console.log($scope.instructordata);
 
-         $scope.addQrCodetoStudent = function(modVal){
+         $scope.goToMainMenu = function(modVal){
 
-          apiService.setStudentInfo(modVal);
+          apiService.setInstructorInfo(modVal);
 
           console.log(modVal);
+          $state.go("tabs.mainmenu");
 
 
-          // alert("button pressed " + modVal);
-          $ionicLoading.show({
-            content: 'Loading',
-            animation: 'fade-in',
-            showBackdrop: true,
-            maxWidth: 200,
-            showDelay: 0
-          });
-
-
- 
-          var requrl = "https://script.google.com/macros/s/AKfycbwym9Io9DP7VJHlcypXa8bJ-5DhfXr-DzrvMszDkVr548a_bqkW/exec?qrcode="+ $scope.barcodeVal +"&regno="+modVal.Registration_No;
-
-          $http.get(requrl)
-          .then(function(response) {
-              console.log(response);
-              $ionicLoading.hide();
-
-              $state.go('tabs.mainmenu');
-
-          });  
-
+          
         }
     });
   }
 
-  function openBarcodeScanner(){
-    $cordovaBarcodeScanner
-      .scan()
-      .then(function(barcodeData) {
-        // alert(barcodeData.text);
-        $scope.barcodeVal = barcodeData.text;
-        verifyQRCode($scope.barcodeVal);
-        // Success! Barcode data is here
-      }, function(error) {
-        // An error occurred
-      });
-
-
-    // NOTE: encoding not functioning yet
-    $cordovaBarcodeScanner
-      .encode(BarcodeScanner.Encode.TEXT_TYPE, "http://www.nytimes.com")
-      .then(function(success) {
-        // Success!
-      }, function(error) {
-        // An error occurred
-      });
-  }
-
-  function verifyQRCode(qrcode) {
-
-    // alert("verifyQRCode");
-
-    $ionicLoading.show({
-      content: 'Loading',
-      animation: 'fade-in',
-      showBackdrop: true,
-      maxWidth: 200,
-      showDelay: 0
-    });
-
-    $http.get("https://script.google.com/macros/s/AKfycbwym9Io9DP7VJHlcypXa8bJ-5DhfXr-DzrvMszDkVr548a_bqkW/exec?qrcode="+qrcode, {})
-    .success(function (response) {
-
-                if (response.hasError) {
-                  console.log("Error")
-                } else {
-                  console.log("Success")
-
-                   $ionicLoading.hide();
-                 
-                   faq = response.infos;
-                   console.log(response.infos);
-                   $scope.APIresponse = response.infos;
-                   console.log(response);
-                  
-                    if($scope.APIresponse.length!=0){
-                      
-                      apiService.setStudentInfo($scope.APIresponse[0]);
-
-                      $state.go('tabs.mainmenu');
-                    }else if($scope.APIresponse.length==0){
-                      $scope.show = true;
-                      // alert($scope.show);
-
-                  
-                      $scope.loadStudentInformation();
-                    }
-                }
-
-            })
-    .error(function (response) {
-              console.log("Response error")
-              console.log(response)
-               
-            });
-   };
+  
+ 
 
 });
