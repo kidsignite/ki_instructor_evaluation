@@ -1,4 +1,4 @@
-<ion-view view-title="Student Details" ng-controller="StudentDetailsCtrl">
+<ion-view view-title="Instructor Details" ng-controller="InstructorDetailsController">
         <ion-content class="padding">
           <!-- <p>Banging your head against a wall uses 150 calories an hour.</p>
           <p>Dogs have four toes on their hind feet, and five on their front feet.</p>
@@ -13,12 +13,10 @@
           <div class="row">
             <div class="col">
                 <div>
-                  Name : {{APIresponse.Childs_Name}}<br/>
-                  Registration : {{APIresponse.Registration_No}}<br/>
-                  Age :{{APIresponse.Age}}<br/>
-                  Parent :{{APIresponse.Parent}}<br/>
-                  Phone :{{APIresponse.Phone}}<br/>
-                  Email :{{APIresponse.Email}}<br/>
+                  Name : {{APIresponse.name}}<br/>
+                  Phone : {{APIresponse.phone}}<br/>
+                  Email : {{APIresponse.email}}<br/>
+                  University : {{APIresponse.university}}<br/>
               </div>
             </div>
           </div>

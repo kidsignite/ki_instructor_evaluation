@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.ionicframework.conference168222;
+package com.ionicframework.instructorevaluation;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

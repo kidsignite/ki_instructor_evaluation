@@ -6,7 +6,7 @@
         </ion-content>
       </ion-view>
  -->
-    <ion-view view-title="Menu" ng-controller="BarcodeCtrl">
+    <ion-view view-title="Menu" ng-controller="MainMenuCtrl">
   <ion-content>
 
 <br><br>
@@ -19,11 +19,11 @@
 
       <div class="row" style="margin-top: 10px;margin-bottom: 60px;">
         <div class="col">
-                  <a style="text-decoration: none;" href="#/tab/studentdetails">
+                  <a style="text-decoration: none;" href="#/tab/instructordetails">
 
-          <img style="width: 30%;" src="img/kids-couple.png"/>
+          <img style="width: 30%;" src="img/instructor.png"/>
 
-          <h3>View Student Details</h3>
+          <h3>View Instructor Details</h3>
           </a>
 
         </div>
@@ -36,16 +36,17 @@
       </div>
       <div class="row">
         <div class="col">
-        <a style="text-decoration: none;" href="#/tab/instructorFeedback">
-                  <img style="width: 30%;" src="img/repeat.png"/>
+        <a style="text-decoration: none;">
+                  <img ng-click= "ins()" style="width: 30%;" src="img/repeat.png"/>
 
           
 
-                     <h3>Give Instructor Feedback</h3>
+                     <h3 ng-click= "ins()">Give Instructor Evaluation</h3>
 
           </a>
         </div>
        <!--   <div class="col">
+        href="#/tab/instructorFeedback"
           <h3>Reports</h3>
         </div> -->
       </div>

@@ -112,76 +112,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ionicSe
   $ionicConfigProvider.tabs.style("standard"); //Makes them all look the same across all OS
 
   $stateProvider
-
-  //   .state('app', {
-  //   url: '/app',
-  //   abstract: true,
-  //   templateUrl: 'templates/menu.html',
-  //   controller: 'AppCtrl'
-  // })
-
-  // .state('app.search', {
-  //   url: '/search',
-  //   views: {
-  //     'menuContent': {
-  //       templateUrl: 'templates/search.html'
-  //     }
-  //   }
-  // })
-
-  // .state('app.home', {
-  //     url: '/home',
-  //     views: {
-  //       'menuContent': {
-  //         templateUrl: 'templates/home.html'
-  //       }
-  //     }
-  //   })
-  //   // .state('app.playlists', {
-  //   //   url: '/playlists',
-  //   //   views: {
-  //   //     'menuContent': {
-  //   //       templateUrl: 'templates/playlists.html',
-  //   //       controller: 'PlaylistsCtrl'
-  //   //     }
-  //   //   }
-  //   // })
-  //   .state('app.sessions', {
-  //     url: "/sessions",
-  //     views: {
-  //         'menuContent': {
-  //             templateUrl: "templates/sessions.html",
-  //             controller: 'SessionsCtrl'
-  //         }
-  //     }
-  //   })
-
-  // // .state('app.single', {
-  // //   url: '/playlists/:playlistId',
-  // //   views: {
-  // //     'menuContent': {
-  // //       templateUrl: 'templates/playlist.html',
-  // //       controller: 'PlaylistCtrl'
-  // //     }
-  // //   }
-  // // });
-  // .state('app.session', {
-  //   url: "/sessions/:sessionId",
-  //   views: {
-  //       'menuContent': {
-  //         templateUrl: "templates/session.html",
-  //         controller: 'SessionCtrl'
-  //       }
-  //     }
-  // });
-
-  //  .state('app', {
-  //   url: '/app',
-  //   abstract: true,
-  //   templateUrl: 'templates/menu.html',
-  //   controller: 'AppCtrl'
-  // })
-
   .state('tabs', {
       url: "/tab",
       abstract: true,
@@ -451,7 +381,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ionicSe
 
               var alertPopup = $ionicPopup.alert({
                  title: 'Success!',
-                 template: 'Feedback has been submitted!'
+                 template: 'Evaluation has been submitted!'
                });
 
                alertPopup.then(function(res) {
@@ -469,7 +399,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ngCordova', 'ionicSe
  
 })
 
-.controller('BarcodeCtrl', function($scope, $cordovaBarcodeScanner, $http, $state, $ionicLoading, apiService) {
+.controller('MainMenuCtrl', function($scope, $cordovaBarcodeScanner, $http, $state, $ionicLoading, apiService) {
 
        $ionicLoading.show({
       content: 'Loading',
@@ -532,7 +462,7 @@ $scope.ins = function() {
 
 })
 
-.controller('instructorSelectCtrl', function($scope, $http,$state, $cordovaBarcodeScanner, $ionicLoading, apiService) {
+.controller('instructorSelectCtrl', function($scope, $http,$state, $cordovaBarcodeScanner, $ionicLoading, apiService, $ionicPopup) {
 
 
 
@@ -564,14 +494,37 @@ $scope.show = false;
         var data  = response.data.data;
         $scope.instructordata = data;
 
+        var ids = [];
+
+        for (var i = 0; i < data.length; i++) {
+          ids.push(data[i].instructor_id);
+        }
+        console.log(ids);
+
         console.log($scope.instructordata);
 
          $scope.goToMainMenu = function(modVal){
+          console.log(modVal.instructor_id);
+          if(ids.indexOf(modVal.instructor_id) != -1){
+            apiService.setInstructorInfo(modVal);
 
-          apiService.setInstructorInfo(modVal);
+            // $scope.instructor = "";
+                        $scope.instructor = undefined;
 
-          console.log(modVal);
-          $state.go("tabs.mainmenu");
+            console.log(modVal);
+            $state.go("tabs.mainmenu");
+          }else{
+              var alertPopup = $ionicPopup.alert({
+                 title: 'Error!',
+                 template: 'Invalid Name!'
+               });
+
+               alertPopup.then(function(res) {
+                  // $state.go('tabs.mainmenu');
+               });
+          }
+
+          
 
 
           

@@ -6,32 +6,39 @@
         </ion-content>
       </ion-view>
  -->
-    <ion-view view-title="Home" ng-controller="studentCheckCtrl">
+    <ion-view view-title="Home" ng-controller="instructorSelectCtrl">
   <ion-content>
 
 <br><br>
     <center>
        
 <!-- <div ng-show="show"> -->
-      <div class="row">
-        <div class="col">
-            <button class="button button-block button-outline button-assertive" ng-click="addQrCodetoStudent(student)">
-            Add Student Barcode
-</button>
-
-  </div>
-      </div>
+     
 <div class="row">
         <div class="col">
 <!-- <p>{{studentsdata}}</p>
  -->         </div>
       </div>
 
-      <div class="row">
+<div class="row">
         <div class="col">
-      <ion-select label="Select Student Registration Number" label-field="Registration_No" provider="studentsdata"  ng-model="student"/>
+            <h4>Search Instructor Name</h4>
 
          </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+      <ion-select label-field="name" provider="instructordata"  ng-model="instructor"/>
+
+         </div>
+      </div>
+
+
+      <div class="row">
+       <div class="col">
+        <button class="button button-block button-outline button-assertive" ng-click="goToMainMenu(instructor)">Next</button>
+       </div>
       </div>
 
 
